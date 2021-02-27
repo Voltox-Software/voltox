@@ -49,15 +49,12 @@ for (let x=0; x < _helpers_keys.length; x++){
             await args_schema.validate(args, { abortEarly: false, strict: true })
             return await _func(args)
         } catch (err) {
+            if (!err || !err.errors) throw err;
             throw new Error(`\n\nVoltox: Validation Error\n
 ${err.errors.map(x => `${_helpers_key.slice(1)}: ${x}\n`)}`)
         }
     }
     helpers[_helpers_key.slice(1)] = func
 }
-
-helpers.getServiceUser({
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE2LCJzZXJ2aWNlSWQiOjEsInNlcnZpY2VfdHlwZSI6IlYtTG9naW4iLCJpYXQiOjE2MTQyNjg3MTl9.anaeJXoBVLA0i7-38aYlHnoasYo8l6ix34o3pO4eQ_Y"
-}).then(d => console.log(d))
 
 module.exports = helpers;
