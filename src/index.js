@@ -3,7 +3,7 @@ const yup = require("yup")
 const jwt = require("jsonwebtoken")
 
 const V_LOGIN_API_ENDPOINT = "http://localhost:4001/api/v1"
-const V_CHECKOUT_API_ENDPOINT = "http://localhost:4002/api/v1"
+const V_CHECKOUT_API_ENDPOINT = "https://server-37.herokuapp.com/api/v1"
 
 
 const SERVICES = {
@@ -56,5 +56,8 @@ ${err.errors.map(x => `${_helpers_key.slice(1)}: ${x}\n`)}`)
     }
     helpers[_helpers_key.slice(1)] = func
 }
+
+helpers.getServiceUser({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInNlcnZpY2VJZCI6MSwic2VydmljZV90eXBlIjoiVi1DaGVja291dCIsImlhdCI6MTYxNDcyNTM3MH0.vz6mf5aI8wSTs64HmFv_Yr-VEAaeKG7ZXu5aSVD_iLY" })
+.then(d => console.log(d))
 
 module.exports = helpers;
